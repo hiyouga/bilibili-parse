@@ -1,2 +1,3 @@
-# yc1zca.win
-榆次一中计算机协会官方网站
+# live.hiyouga.tk
+bilibili视频播放下载
+Copyright 2014-2016 冰河动漫
