@@ -25,6 +25,6 @@ if(!!strpos($cdata,'error_code')){
 		echo '{"code":-1,"message":"无法获取视频.VIDEO_ERROR"}';
 		exit;
 	}else{
-		echo $mp4;
+		header("Location:$mp4");
 	}
 }
