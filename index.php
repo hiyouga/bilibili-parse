@@ -109,11 +109,7 @@ if(!!strpos($cdata,'error_code')){
 	}
 	if(empty($mp4)){
 		//'http://bilibili.cloudmoe.com/m/hd_html5/?aid='.$aid.'&page='.$p;
-		$mp4 = file_get_contents('http://livevip.hiyouga.tk/vipapi.php?appkey=hiyouga-live&cid='.$cid);
-		if(!!strpos($mp4,'code')){
-			echo '<span class="warn">'.$mp4.'</span></div></body></html>';
-			exit;	
-		}
+		$mp4 = 'http://livevip.hiyouga.tk/vipapi.php?appkey=hiyouga-live&cid='.$cid;
 		$hmp4 = true;
 		$mp4info = '高清mp4';
 	}
@@ -147,7 +143,7 @@ Up主：<?php echo $up;?>
 <footer style="text-align:right;">
 <a rel="nofollow" target="_black" href="http://www.bilibili.com/video/av<?php echo $aid;?>/index_<?php echo $p;?>.html" style="color:#090;">前往B站♂</a> | 
 <a href="download.php?<?php echo $_SERVER["QUERY_STRING"];?>" style="color:#00F;">下载视频</a> | 
-<a href="old.php?<?php echo $_SERVER["QUERY_STRING"];?>" style="color:#666;">返回旧版</a> | 
+<a href="hdflv.php?<?php echo $_SERVER["QUERY_STRING"];?>" style="color:#666;">高清flv(PConly)</a> | 
 <?php echo $time;?> | 
 Copyright © 2014-2016 <a href="https://www.hiyouga.tk" style="color:#000;">冰河动漫</a>. All rights reserved.
 </footer>
