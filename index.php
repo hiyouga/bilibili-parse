@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 //判断手机端
 $agent = hy_chwap();
 if($agent){
@@ -61,7 +61,7 @@ function hy_getinfo($aid,$p){
 }
 ?>
 <!DOCTYPE html>
-<!-- V7.0final last modified in 2016/07/12 -->
+<!-- V7.1final last modified in 2016/07/28 -->
 <html lang="zh">
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
@@ -76,8 +76,8 @@ function hy_getinfo($aid,$p){
 </head>
 <body>
 <form method="get" action="">
-av号：<input id="text" type="text" name="aid" size="6" maxlength="9" value="<?php echo $aid;?>" />
-Part：<input id="text" type="text" name="p" size="2" maxlength="3" value="<?php echo $p;?>" />
+av号：<input class="text" type="text" name="aid" size="6" maxlength="9" value="<?php echo $aid;?>" />
+Part：<input class="text" type="text" name="p" size="2" maxlength="3" value="<?php echo $p;?>" />
 <input class="submit" type="submit" value="Go!" />
 <a class="jump" onClick="jump()">试试手气</a>
 </form><hr />

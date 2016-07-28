@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- V3.0final last modified in 2016/07/12 -->
+<!-- V3.1final last modified in 2016/07/28 -->
 <html lang="zh">
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
@@ -9,21 +9,15 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <title>手机版 - 冰河动漫 - 直播</title>
 <link rel="icon" type="image/ico" href="https://www.bilibili.com/favicon.ico" />
-<style>
-body{font-family:Microsoft Yahei;background:#ddd url(http://r6.loli.io/2ABnYz.jpg) no-repeat fixed;text-shadow:1px 0 0 rgba(255,255,255,0.7);}
-form{text-align:center;}
-.warn{color:#F00;}
-.info{font-size:0.8em;}
-i{font-style:normal;color:#000;}
-a{text-decoration:none;}
-a:hover{text-decoration:underline;text-shadow:#585858 0px 0px 3px;}
-</style>
+<link rel="stylesheet" href="main.css" />
+<script src="main.js"></script>
 </head>
 <body>
 <form method="get" action="">
-av号：<input type="text" name="aid" size="6" maxlength="9" value="<?php echo $_GET['aid'];?>" />
-Part：<input type="text" name="p" size="2" maxlength="3" value="<?php echo $_GET['p'];?>" />
-<input type="submit" value="Go!" />
+av号：<input class="text" type="text" name="aid" size="6" maxlength="9" value="<?php echo $_GET['aid'];?>" />
+Part：<input class="text" type="text" name="p" size="2" maxlength="3" value="<?php echo $_GET['p'];?>" />
+<input class="submit" type="submit" value="Go!" />
+<a class="jump" onClick="jump()">试试手气</a>
 </form><hr />
 <div style="text-align:center;">
 <?php
@@ -113,7 +107,7 @@ class runtime{
 $runtime= new runtime;$runtime->start();$a = 0;for($i=0; $i<1000000; $i++){$a += $i;}$runtime->stop();
 $time = '执行时间: '.$runtime->spent().' 毫秒';
 ?>
-<span class="info">
+<span style="font-size:0.8em;">
 视频标题：<?php echo $title;?><br />
 Up主：<?php echo $up;?><br />
 视频信息：aid:<?php echo $aid;?> <i>|</i> part:<?php echo $p;?> <i>|</i> cid:<?php echo $cid;?><br />

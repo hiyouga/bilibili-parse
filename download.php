@@ -9,16 +9,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <title>下载 - 冰河动漫 - 直播</title>
 <link rel="icon" type="image/ico" href="https://www.bilibili.com/favicon.ico" />
-<style>
-body{font-family:Microsoft Yahei;background:#ddd url(http://r6.loli.io/2ABnYz.jpg) no-repeat fixed;text-shadow:1px 0 0 rgba(255,255,255,0.7);}
-.warn{color:#F00;}
-a{text-decoration:none;color:#105cb6;}
-a:hover{text-decoration:underline;text-shadow:#585858 0px 0px 3px;}
-.main{text-align:center;font-size:1.2em;line-height:2.5em;}
-</style>
+<link rel="stylesheet" href="main.css" />
 </head>
 <body>
-<div class="main">
+<div style="text-align:center;font-size:1.2em;line-height:2.5em;">
 点击链接下载：<br />
 <?php
 //获取分p

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 //V1.2 last modified in 2016/07/28
 $cid = $_GET['cid'];
 if($_GET['appkey']!=='hiyouga-live'){
