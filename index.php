@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 //判断手机端
 $agent = hy_chwap();
 if($agent){
@@ -6,21 +6,21 @@ if($agent){
 	exit;
 }
 //获取分p
-if(isset($_GET['p'])){
+if(!empty($_GET['p'])){
 	$p = $_GET['p'];
 }else{
 	$p = '1';
 }
 //获取aid
-if(isset($_GET['aid'])){
+if(!empty($_GET['aid'])){
 	$aid = $_GET['aid'];
 	//获取cid及视频信息
 	list($cid,$img,$title,$up) = hy_getinfo($aid,$p);
-}elseif(isset($_GET['cid'])){
+}elseif(!empty($_GET['cid'])){
 	//进行cid请求
 	$cid = $_GET['cid'];
 }else{
-	echo '<html><head><title>错误 - 冰河动漫 - 直播</title><style>body{font-family:Microsoft Yahei;background:#ddd url(http://r6.loli.io/2ABnYz.jpg) no-repeat fixed;text-shadow:1px 0 0 rgba(255,255,255,0.7);}form{text-align:center;}.warn{color:#F00;}</style></head><body><form method="get" action="">av号：<input type="text" name="aid" size="6" maxlength="9" />Part：<input type="text" name="p" size="2" maxlength="3" value="1" /><input type="submit" value="Go!" /><a onClick="jump()">试试手气</a></form><hr /><div style="text-align:center;"><span class="warn">{"code":-1,"message":"请输入av号.AID_ERROR"}</span></div><script src="main.js"></script></body></html>';
+	echo '<html><head><title>错误 - 冰河动漫 - 直播</title><link rel="stylesheet" href="main.css" /></head><body><form method="get" action="">av号：<input class="text" type="text" name="aid" size="6" maxlength="9" />Part：<input class="text" type="text" name="p" size="2" maxlength="3" value="1" /><input class="submit" type="submit" value="Go!" /> <a class="jump" onClick="jump()">试试手气</a></form><hr /><div style="text-align:center;"><span class="warn">{"code":-1,"message":"请输入av号.AID_ERROR"}</span></div><script src="main.js"></script></body></html>';
 	exit;
 }
 function hy_chwap(){
@@ -46,7 +46,7 @@ function hy_getinfo($aid,$p){
 	$result = curl_exec($ch);
 	curl_close($ch);
 	if(!!strpos($info,'code')){
-		echo '<html><head><title>错误 - 冰河动漫 - 直播</title><style>body{font-family:Microsoft Yahei;background:#ddd url(http://r6.loli.io/2ABnYz.jpg) no-repeat fixed;text-shadow:1px 0 0 rgba(255,255,255,0.7);}form{text-align:center;}.warn{color:#F00;}</style></head><body><form method="get" action="">av号：<input type="text" name="aid" size="6" maxlength="9" />Part：<input type="text" name="p" size="2" maxlength="3" value="1" /><input type="submit" value="Go!" /><a onClick="jump()">试试手气</a></form><hr /><div style="text-align:center;"><span class="warn">'.$info.'</span></div><script src="main.js"></script></body></html>';
+		echo '<html><head><title>错误 - 冰河动漫 - 直播</title><link rel="stylesheet" href="main.css" /></head><body><form method="get" action="">av号：<input class="text" type="text" name="aid" size="6" maxlength="9" />Part：<input class="text" type="text" name="p" size="2" maxlength="3" value="1" /><input class="submit" type="submit" value="Go!" /> <a class="jump" onClick="jump()">试试手气</a></form><hr /><div style="text-align:center;"><span class="warn">'.$info.'</span></div><script src="main.js"></script></body></html>';
 		exit;
 	}
 	$result = json_decode($result,true);
@@ -71,29 +71,22 @@ function hy_getinfo($aid,$p){
 <title><?php echo $title.' - '.$up; ?> - 冰河动漫 - 直播</title>
 <link rel="icon" type="image/ico" href="https://www.bilibili.com/favicon.ico" />
 <link rel="stylesheet" href="https://vjs.zencdn.net/5.8.8/video-js.css" />
-<style>
-body{font-family:Microsoft Yahei;background:#ddd url(http://r6.loli.io/2ABnYz.jpg) no-repeat fixed;text-shadow:1px 0 0 rgba(255,255,255,0.7);}
-form{text-align:center;}
-.warn{color:#F00;}
-.info1{position:absolute;top:0;left:3%;font-size:0.8em;text-align:left;}
-.info2{position:absolute;top:0;right:0;font-size:0.7em;background-color:rgba(255,255,255,0.95);}
-i{font-style:normal;color:#000;}
-a{text-decoration:none;}
-a:hover{text-decoration:underline;text-shadow:#585858 0px 0px 3px;}
-</style>
+<link rel="stylesheet" href="main.css" />
+<script src="main.js"></script>
 </head>
 <body>
 <form method="get" action="">
-av号：<input type="text" name="aid" size="6" maxlength="9" value="<?php echo $aid;?>" />
-Part：<input type="text" name="p" size="2" maxlength="3" value="<?php echo $p;?>" />
-<input type="submit" value="Go!" /><a onClick="jump()">试试手气</a>
+av号：<input id="text" type="text" name="aid" size="6" maxlength="9" value="<?php echo $aid;?>" />
+Part：<input id="text" type="text" name="p" size="2" maxlength="3" value="<?php echo $p;?>" />
+<input class="submit" type="submit" value="Go!" />
+<a class="jump" onClick="jump()">试试手气</a>
 </form><hr />
 <div style="text-align:center;">
 <?php
 //获取mp4
 $cdata = file_get_contents('http://interface.bilibili.com/playurl?appkey=452d3958f048c02a&otype=json&cid='.$cid);
 if(!!strpos($cdata,'error_code')){
-	echo '<span class="warn">'.$cdata.'</span></div><script src="main.js"></script></body></html>';
+	echo '<span class="warn">'.$cdata.'</span></div></body></html>';
 	exit;
 }else{
 	$cdata = json_decode($cdata,true);
@@ -116,7 +109,11 @@ if(!!strpos($cdata,'error_code')){
 	}
 	if(empty($mp4)){
 		//'http://bilibili.cloudmoe.com/m/hd_html5/?aid='.$aid.'&page='.$p;
-		$mp4 = 'http://livevip.hiyouga.tk/vipapi.php?cid='.$cid;
+		$mp4 = file_get_contents('http://livevip.hiyouga.tk/vipapi.php?appkey=hiyouga-live&cid='.$cid);
+		if(!!strpos($mp4,'code')){
+			echo '<span class="warn">'.$mp4.'</span></div></body></html>';
+			exit;	
+		}
 		$hmp4 = true;
 		$mp4info = '高清mp4';
 	}
@@ -154,7 +151,6 @@ Up主：<?php echo $up;?>
 <?php echo $time;?> | 
 Copyright © 2014-2016 <a href="https://www.hiyouga.tk" style="color:#000;">冰河动漫</a>. All rights reserved.
 </footer>
-<script src="main.js"></script>
 <script src="https://vjs.zencdn.net/5.8.8/video.js"></script>
 </body>
 </html>
