@@ -1,6 +1,10 @@
-﻿<?php
-//V1.1 last modified in 2016/07/12
+<?php
+//V1.2 last modified in 2016/07/28
 $cid = $_GET['cid'];
+if($_GET['appkey']!=='hiyouga-live'){
+	echo '{"code":-1,"message":"API调用失败.APP_INVALID"}';
+	exit;
+}
 $cdata = file_get_contents('http://interface.bilibili.com/playurl?appkey=452d3958f048c02a&otype=json&cid='.$cid);
 if(!!strpos($cdata,'error_code')){
 	echo $cdata;
@@ -20,6 +24,7 @@ if(!!strpos($cdata,'error_code')){
 	if(empty($mp4)){
 		echo '{"code":-1,"message":"无法获取视频.VIDEO_ERROR"}';
 		exit;
+	}else{
+		echo $mp4;
 	}
-	header("Location:$mp4");
 }
