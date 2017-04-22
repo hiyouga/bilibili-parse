@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+//retuen json:videolink,poster,quality
 header('Content-type: application/json');
 $info = curl('http://api.bilibili.com/view?appkey=12737ff7776f1ade&id='.$_GET['aid'].'&page='.$_GET['p']);
 if(!!strpos($info,'code')){
