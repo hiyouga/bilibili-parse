@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<!-- V9.0 last modified in 2017/04/22-->
+<html lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<meta name="Description" content="冰河论坛直播模块，支持bilibili视频在线观看及下载" />
+<meta name="keywords" content="冰河论坛,bilibili,hiyouga" />
+<meta name="author" content="hoshi_hiyouga,admin@hiyouga.win" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>冰河直播</title>
+<link rel="icon" type="image/ico" href="https://www.bilibili.com/favicon.ico" />
+<link rel="stylesheet" href="library/core.css" />
+<link rel="stylesheet" href="library/colorbox.css" />
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdn.bootcss.com/video.js/6.0.1/video-js.min.css" />
+<link rel="stylesheet" href="library/videojs-qualityselector.css" />
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="#">冰河直播</a>
+	</div>
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<ul class="nav navbar-nav">
+			<li class="active"><a>观看</a></li>
+			<li><a id="dl_btn" href="#modal-dl" data-toggle="modal">下载</a></li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">更多<strong class="caret"></strong></a>
+				<ul class="dropdown-menu">
+					<li><a id="hdflv" href="">哔哩哔哩播放器</a>
+					<li><a id="bilibili" rel="nofollow" target="_blank" href="">转到哔哩哔哩</a></li>
+					<li><a id="bilibilijj" rel="nofollow" target="_blank" href="">转到唧唧</a></li>
+					<li class="divider"></li>
+					<li><a href="/">冰河论坛</a></li>
+				</ul>
+			</li>
+		</ul>
+		<form class="navbar-form navbar-left" method="get" action="">
+			<div class="form-group">
+				<input id="inputaid" type="text" name="aid" placeholder="AV号" class="form-control" />
+				<input id="inputp" type="text" name="p" placeholder="Part" class="form-control" />
+			</div>
+			<button type="submit" class="btn btn-default">提交</button>
+		</form>
+	</div>
+</nav>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="modal fade" id="modal-dl" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h4 class="modal-title" id="myModalLabel">视频下载</h4>
+						</div>
+						<div class="modal-body">
+							FLV格式：<div id="flv" class="column"></div>
+							MP4格式：<div id="mp4" class="column"></div>
+							XML弹幕：<div id="xml" class="column"></div>
+							封面图：<div id="img" class="column"></div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="alert alert-dismissable alert-warning hidden" id="noaid">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<h4>注意!</h4> <strong>Warning!</strong> <span>{"code":-1,"message":"请输入av号.AID_ERROR"}</span>
+			</div>
+			<div class="alert alert-dismissable alert-danger hidden" id="warn">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<h4>注意!</h4> <strong>Warning!</strong> <span id="warninfo"></span>
+			</div>
+			<div class="alert alert-dismissable alert-info hidden">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<h4>注意!</h4> <strong>Warning!</strong> Best check yo self, you're not looking too good. <a href="#" class="alert-link">alert link</a>
+			</div>
+		</div>
+	</div>
+	<div class="row clearfix">
+		<div class="col-md-8 column">
+			<h4 class="text-left" id="title"></h4>
+			<p id="up"></p>
+		</div>
+		<div class="col-md-4 column">
+			<table class="table table-hover table-condensed table-striped table-bordered">
+				<tbody>
+					<tr><td>aid</td><td id="aid"></td></tr>
+					<tr><td>part</td><td id="part"></td></tr>
+					<tr><td>cid</td><td id="cid"></td></tr>
+					<tr><td>quality</td><td id="quality"></td></tr>
+					<tr><td>count</td><td id="count"></td></tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<video style="width:100%;" id="my-video" class="video-js" controls preload="auto" poster="" data-setup="{}">
+				<p class="vjs-no-js">
+				To view this video please enable JavaScript, and consider upgrading to a web browser that<a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+				</p>
+			</video>
+		</div>
+	</div>
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<blockquote style="white-space:pre-wrap;" id="intro"></blockquote>
+			<ul class="list-unstyled list-inline" id="tag"><li>Tags:</li></ul>
+		</div>
+	</div>
+	<footer>
+		<p class="muted credit">Copyright © 2014-2017 <a target="_blank" href="https://www.hiyouga.win/" style="color:#000;">冰河论坛</a>. All rights reserved.</p>
+    </footer>
+</div>
+<script src="library/jquery-3.2.1.min.js"></script>
+<script src="library/jquery.colorbox.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/video.js/6.0.1/video.min.js"></script>
+<script src="library/zh-CN.js"></script>
+<script src="library/videojs-qualityselector.min.js"></script>
+<script src="library/core.js"></script>
+<script>
+videojs('my-video',{language: 'zh-CN'});
+videojs.options.flash.swf = "https://cdn.bootcss.com/video.js/6.0.1/video-js.swf";
+</script>
+</body>
+</html>
