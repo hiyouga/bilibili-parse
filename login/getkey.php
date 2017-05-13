@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 $url = "https://passport.bilibili.com/login?".$_SERVER["QUERY_STRING"];
 $cookie = dirname(__FILE__)."/cookie.tmp";
 $ch = curl_init();
