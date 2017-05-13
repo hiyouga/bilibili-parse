@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 //V1.0 last modified in 2016/07/12
 //error_reporting(0);
 $cookieVerify = dirname(__FILE__)."/verify.tmp";
@@ -31,6 +31,7 @@ if(!$_POST){
 	<h1>hiyouga bili login system</h1><br /><br />
 	<div id="form">
 	<form action="" method="post">
+		USERID：<input id="userid" type="text" name="userid" /><br /><br />
 		Password：<input id="pwd" type="text" name="pwd" /><br /><br />
 		Verify code：<input id="captcha" type="text" name="vdcode" /><img style="height:40px;width:auto;" src="verify.jpg" /><br /><br />
 		Key：<input id="key" type="text" name="key" /><br /><br />
@@ -44,6 +45,7 @@ if(!$_POST){
 	<script src="https://static-s.bilibili.com/js/jsencrypt.min.js"></script>
 	<script>
 	$("#submit").click(function(){
+		userid = $("#userid").val();
 		passwd = $("#pwd").val();
 		captcha = $("#captcha").val();
 		key = $("#key").val();
@@ -55,6 +57,7 @@ if(!$_POST){
 					jscrypt.setPublicKey(rs.key);
 					passwd = jscrypt.encrypt(rs.hash + passwd);
 					$.post("", {
+						"userid": userid,
 						"pwd": passwd,
 						"vdcode": captcha,
 						"key": key
@@ -77,12 +80,12 @@ if(!$_POST){
 	}
 	$ch = curl_init();
 	$data = array(
-	'act' => 'login',
-	'gourl' => '',
-	'keeptime' => '2592000',
-    'userid' => '13353541467',
-    'pwd' => $_POST["pwd"],
-	'vdcode' => $_POST["vdcode"]
+		'act' => 'login',
+		'gourl' => '',
+		'keeptime' => '2592000',
+		'userid' => $_POST["userid"],
+		'pwd' => $_POST["pwd"],
+		'vdcode' => $_POST["vdcode"]
 	);
 	$url = "https://passport.bilibili.com/login/dologin"; 
 	$data = http_build_query($data);
