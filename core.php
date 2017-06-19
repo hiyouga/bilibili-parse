@@ -122,7 +122,7 @@ function getvideo($cid,$type){
 	"appkey"=>"f3bb208b3d081dc8",
 	),APP_SECRET);
 	$cdata = curl('https://interface.bilibili.com/playurl?'.$back['params'].'&sign='.$back['sign']);
-	//$cdata = str_replace("http://","https://",$cdata);
+	$cdata = str_replace("http://","https://",$cdata);
 	return $cdata;
 }
 /**
